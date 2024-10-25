@@ -19,6 +19,10 @@ const loadCatalogData = async () => {
 
 const selectedLanguage = ref('ru')
 
+function handleLanguageChange(language) {
+  selectedLanguage.value = language
+}
+
 onMounted(() => {
   loadCatalogData()
 })
