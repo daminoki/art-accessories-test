@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import path from 'path'
@@ -38,7 +40,7 @@ export default defineNuxtConfig({
   },
   hooks: {
     'build:before': () => {
-      const filePath = path.resolve(__dirname, 'task_json.txt')
+      const filePath = path.resolve(__dirname, process.env.TASK_FILE_PATH || 'task_json.txt')
       const jsonData = fs.readFileSync(filePath, 'utf-8')
       fs.writeFileSync(path.resolve(__dirname, 'static/data.json'), jsonData)
     },
