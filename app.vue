@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <h1>Каталог</h1>
-    <pre>{{ catalogData }}</pre>
-  </div>
+  <main>
+    <NuxtPage />
+  </main>
 </template>
 
-<script setup>
-const catalogData = useState('catalogData')
-console.log(catalogData.value)
+<script setup lang="ts">
+useHead({
+  title: 'Art Accessories Test Task',
+  meta: [
+    { name: 'description', content: 'Art Accessories Test Task' },
+  ],
+})
 </script>
