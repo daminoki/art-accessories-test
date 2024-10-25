@@ -1,14 +1,21 @@
 import fs from 'fs'
+import { fileURLToPath } from 'url'
 import path from 'path'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', (_options, nuxt) => {
-    nuxt.hooks.hook('vite:extendConfig', (config) => {
-      // @ts-expect-error: vuetify plugin type issue
-      config.plugins.push(vuetify({ autoImport: true }))
-    })
-  }],
+  modules: [
+    '@nuxt/eslint',
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        // @ts-expect-error: vuetify plugin type issue
+        config.plugins.push(vuetify({ autoImport: true }))
+      })
+    },
+  ],
   plugins: ['~/plugins/loadJson.server.ts'],
   devtools: { enabled: true },
   css: ['~/assets/styles/main.scss'],

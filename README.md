@@ -1,5 +1,9 @@
 ## Art Accessories Test Task
 
+### Deployment
+
+You can see live demo here: https://art-accessories-test.vercel.app/
+
 ### Getting started locally
 ```
 git clone [repository-url]
@@ -14,3 +18,5 @@ npm run dev
 * Vue3
 * Nuxt3
 * TypeScript
+* Tailwind
+* Vuetify
