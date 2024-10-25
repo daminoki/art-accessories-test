@@ -34,7 +34,7 @@ export default defineNuxtConfig({
   },
   hooks: {
     'build:before': () => {
-      const filePath = path.resolve(process.cwd(), 'task_json.txt')
+      const filePath = path.resolve(process.cwd(), 'public/task_json.txt')
       const jsonData = fs.readFileSync(filePath, 'utf-8')
       fs.writeFileSync(path.resolve(process.cwd(), 'static/data.json'), jsonData)
     },
