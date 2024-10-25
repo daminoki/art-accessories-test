@@ -1,5 +1,9 @@
 ## Art Accessories Test Task
 
+### Deployment
+
+Live demo here: https://art-accessories-test.vercel.app/
+
 ### Getting started locally
 ```
 git clone [repository-url]
