@@ -1,6 +1,10 @@
 import fs from 'fs'
+import { fileURLToPath } from 'url'
 import path from 'path'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineNuxtConfig({
   modules: [
@@ -34,9 +38,9 @@ export default defineNuxtConfig({
   },
   hooks: {
     'build:before': () => {
-      const filePath = path.resolve(process.cwd(), 'public/task_json.txt')
+      const filePath = path.resolve(__dirname, 'task_json.txt')
       const jsonData = fs.readFileSync(filePath, 'utf-8')
-      fs.writeFileSync(path.resolve(process.cwd(), 'static/data.json'), jsonData)
+      fs.writeFileSync(path.resolve(__dirname, 'static/data.json'), jsonData)
     },
   },
   eslint: {
