@@ -1,6 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="flex flex-col">
     <LanguageSelect @language-changed="handleLanguageChange" />
+
     <ListView
       v-if="catalogData"
       :list-data="catalogData"

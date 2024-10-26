@@ -5,6 +5,7 @@
     :items="languages"
     variant="outlined"
     max-width="250"
+    class="align-self-end w-100"
     @update:model-value="changeLanguage"
   />
 </template>
