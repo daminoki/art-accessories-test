@@ -3,15 +3,17 @@
     <LanguageSelect @language-changed="handleLanguageChange" />
 
     <ListView
-      v-if="catalogData"
+      v-if="catalogData.length > 0"
       :list-data="catalogData"
       :selected-language="selectedLanguage"
     />
   </v-container>
 </template>
 
-<script setup>
-const catalogData = ref(null)
+<script setup lang="ts">
+import type CatalogItem from '~/entities/catalog'
+
+const catalogData = ref<CatalogItem[]>([])
 
 const loadCatalogData = async () => {
   const response = await fetch('/task_json.txt')
@@ -20,7 +22,7 @@ const loadCatalogData = async () => {
 
 const selectedLanguage = ref('ru')
 
-function handleLanguageChange(language) {
+function handleLanguageChange(language: string) {
   selectedLanguage.value = language
 }
 

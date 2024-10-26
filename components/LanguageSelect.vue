@@ -10,12 +10,12 @@
   />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const languages = ['ru', 'en', 'fr']
 const selectedLanguage = ref('ru')
 const emit = defineEmits(['language-changed'])
 
-const labels = {
+const labels: Record<string, string> = {
   ru: 'Выберите язык',
   en: 'Choose language',
   fr: 'Choisissez la langue',

@@ -4,7 +4,7 @@
     :item-children="item => item.childs"
     open-on-click
   >
-    <template #title="{ item }">
+    <template #title="{ item }: { item: CatalogItem }">
       <NuxtLink
         :to="getItemLink(item)"
         class="hover:underline"
@@ -22,10 +22,12 @@
   </v-treeview>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type CatalogItem from '~/entities/catalog'
+
 const props = defineProps({
   listData: {
-    type: Array,
+    type: Array as PropType<CatalogItem[]>,
     required: true,
   },
   selectedLanguage: {
@@ -34,7 +36,7 @@ const props = defineProps({
   },
 })
 
-const getItemTitle = (item) => {
+const getItemTitle = (item: CatalogItem) => {
   const locale = item.locale[props.selectedLanguage]
 
   if (locale && locale.cg_name) {
@@ -43,10 +45,10 @@ const getItemTitle = (item) => {
 
   // fallback if the selected language doesn't have a name
   const fallbackTitle = Object.values(item.locale).find(loc => loc.cg_name)
-  return fallbackTitle.cg_name
+  return fallbackTitle!.cg_name
 }
 
-const getItemLink = (item) => {
+const getItemLink = (item: CatalogItem) => {
   const locale = item.locale[props.selectedLanguage]
 
   if (locale && locale.link) {
@@ -55,14 +57,14 @@ const getItemLink = (item) => {
 
   // fallback if the selected language doesn't have a link
   const fallbackLink = Object.values(item.locale).find(loc => loc.cg_name)
-  return `${fallbackLink.link}${fallbackLink.id}`
+  return `${fallbackLink!.link}${fallbackLink!.id}`
 }
 
-const getBreadcrumbs = (item) => {
+const getBreadcrumbs = (item: CatalogItem) => {
   const breadcrumbs = []
   const breadcrumbsId = item.path_to_top
 
-  const findItemById = (id, items) => {
+  const findItemById = (id: number, items: CatalogItem[]) => {
     let foundItem = null
 
     items.forEach((item) => {
